@@ -6,12 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,tsx}": [
+      "eslint --config .eslintrc.json --ignore-path .gitignore --fix"
+    ],
+    "packages/**/*.{ts,tsx,json,css,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -23,6 +32,8 @@
     "eslint-config-next": "14.2.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
