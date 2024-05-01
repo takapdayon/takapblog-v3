@@ -1,11 +1,11 @@
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 import { ReactNode } from 'react';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const noteSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: 'takapblog',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html>
-      <body className={inter.className}>
+      <body className={noteSansJP.className}>
         <div className="flex flex-col justify-between min-h-screen">
           <Header />
           <div className="container mx-auto mb-auto max-w-5xl py-8">{children}</div>
