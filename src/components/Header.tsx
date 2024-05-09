@@ -14,7 +14,7 @@ const TabElement = ({ href, children }: { href: string; children: ReactNode }) =
 export const Header = () => {
   return (
     <header className="border-b border-slate-200 dark:border-slate-200/5 text-slate-500 py-4">
-      <div className="flex justify-between max-w-5xl mx-auto px-4">
+      <div className="flex justify-between max-w-6xl mx-auto px-4">
         <nav className="max-w-[85rem] w-full mx-auto sm:flex sm:items-center sm:justify-between" aria-label="Global">
           <div className="flex items-center justify-between">
             <a className="flex-none text-xl font-semibold dark:text-white" href="/">

@@ -18,7 +18,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body className={noteSansJP.className}>
         <div className="flex flex-col justify-between min-h-screen">
           <Header />
-          <div className="container mx-auto mb-auto max-w-5xl py-8">{children}</div>
+          <div className="container mx-auto mb-auto max-w-6xl py-8">{children}</div>
           <Footer />
         </div>
       </body>
