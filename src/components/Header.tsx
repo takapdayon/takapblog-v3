@@ -69,7 +69,7 @@ export const Header = () => {
             <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
               <TabElement href="/">Top</TabElement>
               <TabElement href="/profile">Profile</TabElement>
-              <TabElement href="/blogs">Blog</TabElement>
+              <TabElement href="/blogs">Blogs</TabElement>
             </div>
           </div>
         </nav>
