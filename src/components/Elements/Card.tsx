@@ -4,11 +4,14 @@ import { ReactNode } from 'react';
 
 type CardProps = {
   children: ReactNode;
+  extendClass: string;
 };
 
-export const Card = ({ children }: CardProps) => {
+export const Card = ({ children, extendClass }: CardProps) => {
   return (
-    <div className="mb-auto w-full p-6 bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+    <div
+      className={`mb-auto w-full p-6 bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 ${extendClass}`}
+    >
       {children}
     </div>
   );
