@@ -34,7 +34,10 @@ export const BlogCard = ({ item }: { item: Entry<TypeBlogSkeleton, undefined, st
         {item.metadata.tags.map(tag => (
           <a className="no-underline" href={`/tags/${tag.sys.id}`}>
             <div className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium border border-gray-200 bg-white text-gray-800 shadow-sm dark:bg-neutral-900 dark:border-neutral-700 dark:text-white hover:underline">
-              #{tag.sys.id}
+              <div className="flex items-end">
+                <span className="i-material-symbols-tag-rounded" />
+                <span>{tag.sys.id}</span>
+              </div>
             </div>
           </a>
         ))}

@@ -25,7 +25,7 @@ const config: Config = {
   },
   plugins: [
     iconsPlugin({
-      collections: getIconCollections(['simple-icons']),
+      collections: getIconCollections(['material-symbols', 'simple-icons']),
     }),
     require('@tailwindcss/typography'),
   ],
