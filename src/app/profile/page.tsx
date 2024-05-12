@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const dotGothic16 = DotGothic16({ subsets: ['latin'], weight: '400' });
 
-export const Page = () => {
+const Page = () => {
   return (
     <div className={`${dotGothic16.className} flex flex-col items-center`}>
       <h2 className="my-20 text-5xl text-yellow-500">工事中</h2>

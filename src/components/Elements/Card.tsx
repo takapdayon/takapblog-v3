@@ -1,16 +1,16 @@
-import { TypeBlogSkeleton } from '@/types/contentful';
-import { Entry } from 'contentful';
-import { ReactNode } from 'react';
+import type { TypeBlogSkeleton } from '@/types/contentful';
+import type { Entry } from 'contentful';
+import type { ReactNode } from 'react';
 
 type CardProps = {
   children: ReactNode;
-  extendClass: string;
+  extendClass?: string;
 };
 
 export const Card = ({ children, extendClass }: CardProps) => {
   return (
     <div
-      className={`mb-auto w-full p-6 bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 ${extendClass}`}
+      className={`mb-auto w-full rounded-xl border bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70 ${extendClass}`}
     >
       {children}
     </div>
@@ -21,9 +21,9 @@ export const BlogCard = ({ item }: { item: Entry<TypeBlogSkeleton, undefined, st
   return (
     <div
       key={item.fields.slug}
-      className="row-span-3 w-full gap-2 grid grid-rows-subgrid bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
+      className="row-span-3 grid w-full grid-rows-subgrid gap-2 rounded-xl border bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
     >
-      <div style={{ backgroundColor: `#${item.fields.color}` }} className="w-full h-32 rounded-t-xl" />
+      <div style={{ backgroundColor: `#${item.fields.color}` }} className="h-32 w-full rounded-t-xl" />
       <div className="p-4 md:p-5">
         <p className="text-sm text-gray-500 dark:text-neutral-400">{item.fields.publishedDate}</p>
         <h3 className="mt-1 font-bold text-gray-800 dark:text-white">
@@ -33,10 +33,10 @@ export const BlogCard = ({ item }: { item: Entry<TypeBlogSkeleton, undefined, st
         </h3>
         <p className="mt-2 text-sm text-gray-500 dark:text-neutral-400">{item.fields.description}</p>
       </div>
-      <div className="px-5 pb-5 flex flex-wrap gap-1 text-sm">
+      <div className="flex flex-wrap gap-1 px-5 pb-5 text-sm">
         {item.metadata.tags.map(tag => (
-          <a className="no-underline" href={`/tags/${tag.sys.id}`}>
-            <div className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium border border-gray-200 bg-white text-gray-800 shadow-sm dark:bg-neutral-900 dark:border-neutral-700 dark:text-white hover:underline">
+          <a key={tag.sys.id} className="no-underline" href={`/tags/${tag.sys.id}`}>
+            <div className="inline-flex items-center gap-x-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-800 shadow-sm hover:underline dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">
               <div className="flex items-end">
                 <span className="i-material-symbols-tag-rounded" />
                 <span>{tag.sys.id}</span>
