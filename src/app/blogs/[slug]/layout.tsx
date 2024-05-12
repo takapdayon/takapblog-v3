@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'takapblog',
   description: 'takapblog',
 };
+export const dynamicParams = false;
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return <div>{children}</div>;
