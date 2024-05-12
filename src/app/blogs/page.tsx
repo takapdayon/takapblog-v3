@@ -16,7 +16,7 @@ const getPosts = async () => {
 const Page = async () => {
   const posts = await getPosts();
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+    <div className="px-4 grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-6">
       {posts.items.map(item => {
         return <BlogCard item={item} />;
       })}
