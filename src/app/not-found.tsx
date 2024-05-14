@@ -2,7 +2,7 @@ import { DotGothic16 } from 'next/font/google';
 import Link from 'next/link';
 const dotGothic16 = DotGothic16({ subsets: ['latin'], weight: '400' });
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className={`${dotGothic16.className} flex flex-col items-center`}>
       <h2 className="my-20 text-5xl text-red-500">404 Not Found</h2>
@@ -12,4 +12,6 @@ export default function NotFound() {
       </Link>
     </div>
   );
-}
+};
+
+export default NotFound;

@@ -25,8 +25,8 @@ const Home = async () => {
         <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
           taka p * 2
         </h5>
-        <p className="font-normal text-gray-500 dark:text-gray-400">I&apos;m web engineer in Japan</p>
-        <p className="font-normal text-gray-500 dark:text-gray-400">仮想世界に生きてます</p>
+        <p className="font-normal text-slate-500 dark:text-gray-400">I&apos;m web engineer in Japan</p>
+        <p className="font-normal text-slate-500 dark:text-gray-400">仮想世界に生きてます</p>
       </Card>
       <h2 className="mb-4 mt-8 text-xl font-bold sm:text-2xl">
         <div className="flex items-center gap-1">

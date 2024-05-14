@@ -72,27 +72,21 @@ const Toc = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | unde
         <Markdown
           allowedElements={['h2', 'h3', 'h4']}
           components={{
-            h2: props => {
-              return (
-                <li className="text-slate-500 hover:text-sky-500">
-                  <a href={'#' + props.children?.toString()}>{props.children}</a>
-                </li>
-              );
-            },
-            h3: props => {
-              return (
-                <li className="indent-6 text-slate-500 hover:text-sky-500">
-                  <a href={'#' + props.children?.toString()}>{props.children}</a>
-                </li>
-              );
-            },
-            h4: props => {
-              return (
-                <li className="indent-12 text-slate-500 hover:text-sky-500">
-                  <a href={'#' + props.children?.toString()}>{props.children}</a>
-                </li>
-              );
-            },
+            h2: props => (
+              <li className="text-slate-500 hover:text-sky-500">
+                <a href={`#${props.children?.toString()}`}>{props.children}</a>
+              </li>
+            ),
+            h3: props => (
+              <li className="indent-6 text-slate-500 hover:text-sky-500">
+                <a href={`#${props.children?.toString()}`}>{props.children}</a>
+              </li>
+            ),
+            h4: props => (
+              <li className="indent-12 text-slate-500 hover:text-sky-500">
+                <a href={`#${props.children?.toString()}`}>{props.children}</a>
+              </li>
+            ),
           }}
         >
           {post?.fields.content}
