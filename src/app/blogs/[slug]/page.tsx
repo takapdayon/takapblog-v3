@@ -129,7 +129,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <Card extendClass="col-span-4 lg:col-span-3">
           <Content post={post} />
         </Card>
-        <div className="invisible h-full lg:visible">
+        <div className="hidden h-full lg:block">
           <Card extendClass="px-4 sticky top-4">
             <Toc post={post} />
           </Card>
