@@ -5,6 +5,7 @@ import Markdown from 'react-markdown';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 
+import { ShareButtons } from '@/app/blogs/[slug]/ShareButton';
 import { Card } from '@/components/Elements/Card';
 import { Tag } from '@/components/Elements/Tag';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -120,6 +121,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className="grid grid-cols-4 gap-4 sm:px-4">
         <Card extendClass="col-span-4 lg:col-span-3">
           <Content post={post} />
+          <div className="mt-12">
+            <ShareButtons title={post?.fields.title} />
+          </div>
         </Card>
         <div className="hidden h-full lg:block">
           <Card extendClass="px-4 sticky top-4">
