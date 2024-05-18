@@ -18,6 +18,9 @@ const config: Config = {
           css: {
             'blockquote p:first-of-type::before': false,
             'blockquote p:first-of-type::after': false,
+            a: {
+              'word-break': 'break-all',
+            },
           },
         },
       },
