@@ -1,37 +1,27 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState, type ReactNode } from 'react';
+import { memo, useState, type ReactNode } from 'react';
 
-const TabElement = ({
-  href,
-  isMobile = false,
-  children,
-}: {
-  href: string;
-  isMobile?: boolean;
-  children: ReactNode;
-}) => {
-  return (
-    <a className={`font-medium ${isMobile ? 'my-2 block' : ''}`} href={href}>
-      {children}
-    </a>
-  );
-};
+// eslint-disable-next-line react/display-name
+const TabElement = memo(
+  ({ href, isMobile = false, children }: { href: string; isMobile?: boolean; children: ReactNode }) => {
+    return (
+      <a className={`font-medium ${isMobile ? 'my-2 block' : ''}`} href={href}>
+        {children}
+      </a>
+    );
+  },
+);
 
-export const Header = () => {
+/**
+ * hydrationエラーが起きる、直すと逐一renderされUI的によくないから許容
+ * ref: https://github.com/pacocoursey/next-themes?tab=readme-ov-file#avoid-hydration-mismatch
+ */
+// eslint-disable-next-line react/display-name
+export const Header = memo(() => {
   const [openNav, setOpenNav] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
-  //ref: https://github.com/pacocoursey/next-themes?tab=readme-ov-file#avoid-hydration-mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <header className="border-b border-border py-4 text-subtext">
@@ -98,4 +88,4 @@ export const Header = () => {
       </div>
     </header>
   );
-};
+});
