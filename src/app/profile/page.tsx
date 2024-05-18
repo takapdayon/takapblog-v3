@@ -13,28 +13,28 @@ const Page = () => {
       </Link>
       {/* <div className="flex flex-col gap-y-8">
         <Card>
-          <h3 className="mb-8 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">profile</h3>
-          <p className="mt-1 font-normal text-gray-500 dark:text-gray-400">
+          <h3 className="mb-8 text-2xl font-semibold tracking-tight text-gray-900">profile</h3>
+          <p className="mt-1 font-normal text-gray-500">
             しがないWebエンジニア。楽しいことをして生きていきたい...(切実)
           </p>
-          <p className="mt-1 font-normal text-gray-500 dark:text-gray-400">
+          <p className="mt-1 font-normal text-gray-500">
             元々インフラエンジニアとしてサーバ・ルータをガチャガチャする日々から、Web周りをガチャガチャする人に
           </p>
-          <p className="mt-1 font-normal text-gray-500 dark:text-gray-400">
+          <p className="mt-1 font-normal text-gray-500">
             毎日Web周りの何かしらをてきとーに弄ってます。
           </p>
         </Card>
         <Card>
-          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">made</h3>
-          <p className="font-normal text-gray-500 dark:text-gray-400">作りました！いっぱい作りたーい！</p>
+          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">made</h3>
+          <p className="font-normal text-gray-500">作りました！いっぱい作りたーい！</p>
         </Card>
         <Card>
-          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">like</h3>
-          <p className="font-normal text-gray-500 dark:text-gray-400">こーれ好きです！</p>
+          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">like</h3>
+          <p className="font-normal text-gray-500">こーれ好きです！</p>
         </Card>
         <Card>
-          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">contact</h3>
-          <p className="font-normal text-gray-500 dark:text-gray-400">
+          <h3 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">contact</h3>
+          <p className="font-normal text-gray-500">
             お問い合わせはtwitterのDM(あまり見ない)か、以下(もっと見ない)から :onasyasu:
           </p>
         </Card>

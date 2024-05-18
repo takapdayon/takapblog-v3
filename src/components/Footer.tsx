@@ -8,7 +8,7 @@ const FooterIcon = ({ uri, name }: { uri: string; name: string }) => {
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-slate-200 py-4 text-slate-500 dark:border-slate-200/5">
+    <footer className="border-t border-border py-4 text-subtext">
       <div className="flex justify-center space-x-2 text-center">
         <FooterIcon uri="https://twitter.com/takapdayon" name="i-simple-icons-x" />
         <FooterIcon uri="https://github.com/takapdayon" name="i-simple-icons-github" />

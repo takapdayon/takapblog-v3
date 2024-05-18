@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <h2 className="mb-6 text-xl font-bold sm:text-3xl">
-        <div className="flex items-end gap-1">
+        <div className="flex items-end gap-1 text-text">
           <span className="i-material-symbols-tag-rounded" />
           <span>{params.slug}</span>
         </div>

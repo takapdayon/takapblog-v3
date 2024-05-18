@@ -22,14 +22,12 @@ const Home = async () => {
         <div className="mb-4 inline-flex size-24 items-center justify-center rounded-full">
           <img className="rounded-full" src="/icon.png" alt="自分のicon" />
         </div>
-        <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-          taka p * 2
-        </h5>
-        <p className="font-normal text-slate-500 dark:text-gray-400">I&apos;m web engineer in Japan</p>
-        <p className="font-normal text-slate-500 dark:text-gray-400">仮想世界に生きてます</p>
+        <h5 className="mb-2 text-xl font-semibold tracking-tight text-text sm:text-3xl">taka p*2</h5>
+        <p className="font-normal text-subtext">I&apos;m web engineer in Japan</p>
+        <p className="font-normal text-subtext">仮想世界に生きてます</p>
       </Card>
       <h2 className="mb-4 mt-8 text-xl font-bold sm:text-2xl">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 text-text">
           <span className="i-material-symbols-article" />
           <span>最新記事</span>
         </div>

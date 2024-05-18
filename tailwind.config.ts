@@ -21,6 +21,13 @@ const config: Config = {
           },
         },
       },
+      colors: {
+        background: 'rgb(var(--background))',
+        text: 'rgb(var(--text))',
+        subtext: 'rgb(var(--sub-text))',
+        card: 'rgb(var(--card))',
+        border: 'rgb(var(--border))',
+      },
     },
   },
   plugins: [
@@ -29,5 +36,6 @@ const config: Config = {
     }),
     require('@tailwindcss/typography'),
   ],
+  darkMode: 'class',
 };
 export default config;

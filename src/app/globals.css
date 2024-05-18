@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --text: 31 41 55;
+    --sub-text: 100 116 139;
+    --card: 255 255 255;
+    --border: 226 232 240; /* slate-200 */
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --text: 226 232 240;
+    --sub-text: 156 163 175;
+    --card: 31 41 55;
+    --border: 51 65 85; /* slate-700 */
+  }
+
+  body {
+    @apply bg-background;
+  }
+}

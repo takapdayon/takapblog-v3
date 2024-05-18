@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 
 import { Card } from '@/components/Elements/Card';
+import { Tag } from '@/components/Elements/Tag';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -32,7 +33,7 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
     <Markdown
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeKatex]}
-      className="prose prose-sm max-w-none md:prose-base dark:prose-invert"
+      className="prose prose-sm max-w-none dark:prose-invert md:prose-base"
       components={{
         h2: props => {
           return <h2 id={props.children?.toString()}>{props.children}</h2>;
@@ -67,23 +68,23 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
 const Toc = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | undefined }) => {
   return (
     <>
-      <div className="mb-4 text-lg font-bold">目次</div>
-      <ul className="list-inside list-none pl-1 leading-7 ">
+      <div className="mb-4 text-lg font-bold text-text">目次</div>
+      <ul className="list-inside list-none pl-1 leading-7">
         <Markdown
           allowedElements={['h2', 'h3', 'h4']}
           components={{
             h2: props => (
-              <li className="text-slate-500 hover:text-sky-500">
+              <li className="text-subtext hover:text-sky-500">
                 <a href={`#${props.children?.toString()}`}>{props.children}</a>
               </li>
             ),
             h3: props => (
-              <li className="indent-6 text-slate-500 hover:text-sky-500">
+              <li className="indent-6 text-subtext hover:text-sky-500">
                 <a href={`#${props.children?.toString()}`}>{props.children}</a>
               </li>
             ),
             h4: props => (
-              <li className="indent-12 text-slate-500 hover:text-sky-500">
+              <li className="indent-12 text-subtext hover:text-sky-500">
                 <a href={`#${props.children?.toString()}`}>{props.children}</a>
               </li>
             ),
@@ -102,25 +103,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <div className="flex flex-col items-center px-4 pb-20 pt-12">
-        <h1 className="text-xl font-bold sm:text-3xl">{post?.fields.title}</h1>
+        <h1 className="text-xl font-bold text-text sm:text-3xl">{post?.fields.title}</h1>
         <div className="mt-6 flex w-full items-center justify-center gap-9">
           <div>
-            <div className="mb-1 text-center text-sm font-bold text-slate-500">published</div>
-            <div className="text-slate-500">{post?.fields.publishedDate}</div>
+            <div className="mb-1 text-center text-sm font-bold text-subtext">published</div>
+            <div className="text-subtext">{post?.fields.publishedDate}</div>
           </div>
           <div className="max-w-48 sm:max-w-96">
-            <div className="mb-1 text-center text-sm font-bold text-slate-500">tags</div>
+            <div className="mb-1 text-center text-sm font-bold text-subtext">tags</div>
             <div className="flex flex-nowrap items-center gap-1 overflow-x-auto overflow-y-hidden text-sm">
-              {post?.metadata.tags.map(tag => (
-                <a key={tag.sys.id} className="no-underline" href={`/tags/${tag.sys.id}`}>
-                  <div className="inline-flex items-center gap-x-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-800 shadow-sm hover:underline dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">
-                    <div className="flex items-end">
-                      <span className="i-material-symbols-tag-rounded text-slate-500" />
-                      <span className="text-slate-500">{tag.sys.id}</span>
-                    </div>
-                  </div>
-                </a>
-              ))}
+              {post?.metadata.tags.map(tag => <Tag key={tag.sys.id} tag={tag} />)}
             </div>
           </div>
         </div>

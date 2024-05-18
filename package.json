@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "test": "vitest run",
+    "format": "prettier --write src/**/*.tsx",
     "cf-generate-types": "source .env && cf-content-types-generator -s $CONTENTFUL_SPACE_ID -t $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN --v10 --out src/types/contentful"
   },
   "dependencies": {
