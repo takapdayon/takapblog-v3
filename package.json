@@ -27,6 +27,7 @@
     "rehype-katex": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
+    "tocbot": "^4.27.20",
     "zod": "^3.23.6"
   },
   "lint-staged": {
