@@ -1,6 +1,7 @@
 import { BlogCard } from '@/components/Elements/Card';
 import { cfClient } from '@/lib/contentfulClient';
 import type { TypeBlogSkeleton } from '@/types/contentful';
+import type { Metadata } from 'next';
 
 const CONTENT_TYPE = 'blog';
 const ORDER_PUBLISHED_DATE = '-fields.publishedDate';
@@ -12,6 +13,13 @@ const getPosts = async (id: string) => {
     'metadata.tags.sys.id[all]': [id],
   });
   return posts;
+};
+
+export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
+  return {
+    title: `${params.slug}の記事一覧`,
+    description: `${params.slug}の記事一覧ページです`,
+  };
 };
 
 export const generateStaticParams = async () => {

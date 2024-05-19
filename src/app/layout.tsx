@@ -8,10 +8,11 @@ import { ThemeProvider } from 'next-themes';
 import './globals.css';
 
 const noteSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['400'] });
-
+const ORIGIN = process.env.ORIGIN ?? '';
 export const metadata: Metadata = {
-  title: 'takapblog',
-  description: 'takapblog',
+  metadataBase: new URL(ORIGIN),
+  title: 'takapblog-v3',
+  description: 'takap*2の技術ブログv3です。主に技術に関する記事を投稿予定です',
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

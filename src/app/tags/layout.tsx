@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'takapblog',
-  description: 'takapblog',
+  title: 'タグ一覧',
+  description: 'タグの一覧です',
 };
 
 const Layout = ({ children }: { children: ReactNode }) => {

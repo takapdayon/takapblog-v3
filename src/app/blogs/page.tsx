@@ -1,16 +1,10 @@
+import { getPosts } from '@/app/blogs/utils';
 import { BlogCard } from '@/components/Elements/Card';
-import { cfClient } from '@/lib/contentfulClient';
-import type { TypeBlogSkeleton } from '@/types/contentful';
+import type { Metadata } from 'next';
 
-const CONTENT_TYPE = 'blog';
-const ORDER_PUBLISHED_DATE = '-fields.publishedDate';
-
-const getPosts = async () => {
-  const posts = await cfClient.getEntries<TypeBlogSkeleton>({
-    content_type: CONTENT_TYPE,
-    order: [ORDER_PUBLISHED_DATE],
-  });
-  return posts;
+export const metadata: Metadata = {
+  title: '記事一覧',
+  description: 'ブログ記事の一覧です',
 };
 
 const Page = async () => {

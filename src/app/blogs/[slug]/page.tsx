@@ -1,4 +1,3 @@
-import { cfClient } from '@/lib/contentfulClient';
 import type { TypeBlogSkeleton } from '@/types/contentful';
 import type { Entry } from 'contentful';
 import Markdown from 'react-markdown';
@@ -11,19 +10,24 @@ import { Tag } from '@/components/Elements/Tag';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { getPost, getPosts } from '@/app/blogs/utils';
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const ShareButtons = dynamic(() => import('./components/ShareButton'), { ssr: false });
 
-const CONTENT_TYPE = 'blog';
-const ORDER_PUBLISHED_DATE = '-fields.publishedDate';
-
-const getPosts = async () => {
-  const posts = await cfClient.getEntries<TypeBlogSkeleton>({
-    content_type: CONTENT_TYPE,
-    order: [ORDER_PUBLISHED_DATE],
-  });
-  return posts;
+export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
+  const post = await getPost(params.slug);
+  return {
+    title: post?.fields.title,
+    description: post?.fields.description,
+    openGraph: {
+      url: `/blogs/${post?.fields.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
+  };
 };
 
 export const generateStaticParams = async () => {
@@ -71,8 +75,8 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
 };
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const posts = await getPosts();
-  const post = posts.items.find(item => item.fields.slug === params.slug);
+  const post = await getPost(params.slug);
+
   return (
     <>
       <div className="flex flex-col items-center px-4 pb-20 pt-12">
