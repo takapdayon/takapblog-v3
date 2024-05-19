@@ -13,7 +13,7 @@ import {
 } from 'react-share';
 
 // eslint-disable-next-line react/display-name
-export const ShareButtons = memo(({ title }: { title: string | undefined }) => {
+const ShareButtons = memo(({ title }: { title: string | undefined }) => {
   const url = location.href;
   return (
     <div className="flex justify-end gap-4">
@@ -32,3 +32,5 @@ export const ShareButtons = memo(({ title }: { title: string | undefined }) => {
     </div>
   );
 });
+
+export default ShareButtons;

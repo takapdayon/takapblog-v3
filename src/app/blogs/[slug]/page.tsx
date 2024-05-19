@@ -5,11 +5,15 @@ import Markdown from 'react-markdown';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 
-import { ShareButtons } from '@/app/blogs/[slug]/ShareButton';
+import { Toc } from '@/app/blogs/[slug]/components/Toc';
 import { Card } from '@/components/Elements/Card';
 import { Tag } from '@/components/Elements/Tag';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+import dynamic from 'next/dynamic';
+
+const ShareButtons = dynamic(() => import('./components/ShareButton'), { ssr: false });
 
 const CONTENT_TYPE = 'blog';
 const ORDER_PUBLISHED_DATE = '-fields.publishedDate';
@@ -63,38 +67,6 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
     >
       {post?.fields.content}
     </Markdown>
-  );
-};
-
-const Toc = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | undefined }) => {
-  return (
-    <>
-      <div className="mb-4 text-lg font-bold text-text">目次</div>
-      <ul className="list-inside list-none pl-1 leading-7">
-        <Markdown
-          allowedElements={['h2', 'h3', 'h4']}
-          components={{
-            h2: props => (
-              <li className="text-subtext hover:text-sky-500">
-                <a href={`#${props.children?.toString()}`}>{props.children}</a>
-              </li>
-            ),
-            h3: props => (
-              <li className="indent-6 text-subtext hover:text-sky-500">
-                <a href={`#${props.children?.toString()}`}>{props.children}</a>
-              </li>
-            ),
-            h4: props => (
-              <li className="indent-12 text-subtext hover:text-sky-500">
-                <a href={`#${props.children?.toString()}`}>{props.children}</a>
-              </li>
-            ),
-          }}
-        >
-          {post?.fields.content}
-        </Markdown>
-      </ul>
-    </>
   );
 };
 
