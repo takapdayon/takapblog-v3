@@ -1,12 +1,13 @@
 import { BlogCard, Card } from '@/components/Elements/Card';
-import { cfClient } from '@/lib/contentfulClient';
+import { createCfClient } from '@/lib/contentfulClient';
 import type { TypeBlogSkeleton } from '@/types/contentful';
+import { draftMode } from 'next/headers';
 
 const CONTENT_TYPE = 'blog';
 const ORDER_PUBLISHED_DATE = '-fields.publishedDate';
 
-const getNewestPosts = async () => {
-  const posts = await cfClient.getEntries<TypeBlogSkeleton>({
+const getNewestPosts = async (isDraftModeEnabled: boolean) => {
+  const posts = await createCfClient(isDraftModeEnabled).getEntries<TypeBlogSkeleton>({
     content_type: CONTENT_TYPE,
     order: [ORDER_PUBLISHED_DATE],
     limit: 3,
@@ -15,7 +16,8 @@ const getNewestPosts = async () => {
 };
 
 const Home = async () => {
-  const posts = await getNewestPosts();
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+  const posts = await getNewestPosts(isDraftModeEnabled);
   return (
     <main className="px-4">
       <Card extendClass="flex flex-col items-center py-12">

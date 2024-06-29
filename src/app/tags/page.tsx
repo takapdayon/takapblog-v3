@@ -1,13 +1,15 @@
 import { Tag } from '@/components/Elements/Tag';
-import { cfClient } from '@/lib/contentfulClient';
+import { createCfClient } from '@/lib/contentfulClient';
+import { draftMode } from 'next/headers';
 
-const getTags = async () => {
-  const tags = await cfClient.getTags();
+const getTags = async (isDraftModeEnabled: boolean) => {
+  const tags = await createCfClient(isDraftModeEnabled).getTags();
   return tags;
 };
 
 const Page = async () => {
-  const tags = await getTags();
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+  const tags = await getTags(isDraftModeEnabled);
   return (
     <div className="flex flex-wrap gap-1 pb-5 text-sm">
       {tags.items.map(tag => (

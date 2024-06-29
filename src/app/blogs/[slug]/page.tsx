@@ -13,11 +13,13 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { getPost, getPosts } from '@/app/blogs/utils';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { draftMode } from 'next/headers';
 
 const ShareButtons = dynamic(() => import('./components/ShareButton'), { ssr: false });
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
-  const post = await getPost(params.slug);
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+  const post = await getPost(params.slug, isDraftModeEnabled);
   return {
     title: post?.fields.title,
     description: post?.fields.description,
@@ -75,7 +77,8 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
 };
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const post = await getPost(params.slug);
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+  const post = await getPost(params.slug, isDraftModeEnabled);
 
   return (
     <>

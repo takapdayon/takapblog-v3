@@ -1,4 +1,5 @@
 import { getPost } from '@/app/blogs/utils';
+import { draftMode } from 'next/headers';
 import { ImageResponse } from 'next/og';
 
 export const revalidate = 'force-cache';
@@ -13,7 +14,8 @@ export const contentType = 'image/png';
 const ORIGIN = process.env.ORIGIN ?? '';
 
 const image = async ({ params }: { params: { slug: string } }) => {
-  const post = await getPost(params.slug);
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+  const post = await getPost(params.slug, isDraftModeEnabled);
   return new ImageResponse(
     (
       <div
