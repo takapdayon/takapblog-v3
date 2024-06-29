@@ -68,6 +68,7 @@ const image = async ({ params }: { params: { slug: string } }) => {
               src={`${ORIGIN}/icon.png`}
               width="100px"
               height="100px"
+              alt="アイコン"
             />
           </div>
         </div>
