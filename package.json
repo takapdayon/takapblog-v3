@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint-staged": "lint-staged",
     "prepare": "husky",
     "test": "vitest run",
     "format": "prettier --write src/**/*.tsx",
@@ -34,10 +35,10 @@
     "zod": "^3.23.6"
   },
   "lint-staged": {
-    "packages/**/*.{ts,tsx}": [
+    "**/*.{ts,tsx}": [
       "eslint --config .eslintrc.json --ignore-path .gitignore --fix"
     ],
-    "packages/**/*.{ts,tsx,json,css,md}": [
+    "**/*.{ts,tsx,json,css,md}": [
       "prettier --write"
     ]
   },
@@ -54,7 +55,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "contentful-cli": "^3.2.1",
     "dotenv": "^16.4.5",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
