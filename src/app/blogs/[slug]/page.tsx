@@ -10,6 +10,7 @@ import { Tag } from '@/components/Elements/Tag';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { LinkCard } from '@/app/blogs/[slug]/components/LinkCard';
 import { getPost, getPosts } from '@/app/blogs/utils';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -70,6 +71,25 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
               {children}
             </code>
           );
+        },
+        p: ({ node, ...props }) => {
+          const child = node?.children[0];
+          if (
+            node?.children.length === 1 &&
+            child?.type === 'element' &&
+            child.tagName === 'a' &&
+            typeof child.properties?.href === 'string' &&
+            child.children[0].type === 'text' &&
+            child.properties.href === child.children[0].value
+          ) {
+            return (
+              <div className="my-4">
+                <LinkCard href={child.properties.href} />
+              </div>
+            );
+          }
+
+          return <p {...props} />;
         },
       }}
     >
