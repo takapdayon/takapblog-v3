@@ -23,6 +23,7 @@
     "contentful": "^10.8.9",
     "next": "14.2.2",
     "next-themes": "^0.3.0",
+    "open-graph-scraper": "^6.6.2",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "react": "^18",
     "react-dom": "^18",
