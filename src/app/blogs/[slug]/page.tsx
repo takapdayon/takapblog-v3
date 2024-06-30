@@ -14,6 +14,8 @@ import { getPost, getPosts } from '@/app/blogs/utils';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
+import rehypeRaw from 'rehype-raw';
+import RemarkGithubAlerts from 'remark-alerts';
 
 const ShareButtons = dynamic(() => import('./components/ShareButton'), { ssr: false });
 
@@ -42,8 +44,8 @@ export const generateStaticParams = async () => {
 const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | undefined }) => {
   return (
     <Markdown
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeKatex]}
+      remarkPlugins={[remarkGfm, RemarkGithubAlerts]}
+      rehypePlugins={[rehypeKatex, rehypeRaw]}
       className="prose prose-sm max-w-none dark:prose-invert md:prose-base"
       components={{
         h2: props => {
