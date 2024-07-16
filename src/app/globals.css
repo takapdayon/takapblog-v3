@@ -12,6 +12,8 @@
     --sub-text: 100 116 139;
     --card: 255 255 255;
     --border: 226 232 240; /* slate-200 */
+    --inline-text: 225 29 72;
+    --inline-back: 241 245 249;
   }
 
   .dark {
@@ -20,6 +22,8 @@
     --sub-text: 156 163 175;
     --card: 31 41 55;
     --border: 51 65 85; /* slate-700 */
+    --inline-text: 225 29 72;
+    --inline-back: 71 85 105;
   }
 
   body {
