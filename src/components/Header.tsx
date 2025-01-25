@@ -1,17 +1,14 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-import { memo, useState, type ReactNode } from 'react';
+import dynamic from 'next/dynamic';
+import { memo, type ReactNode } from 'react';
+const ThemeIcon = dynamic(() => import('./Elements/ThemeIcon'), { ssr: false });
+const MobileHeader = dynamic(() => import('./Elements/MobileHeader'), { ssr: false });
 
-// eslint-disable-next-line react/display-name
-const TabElement = memo(
-  ({ href, isMobile = false, children }: { href: string; isMobile?: boolean; children: ReactNode }) => {
-    return (
-      <a className={`font-medium ${isMobile ? 'my-2 block' : ''}`} href={href}>
-        {children}
-      </a>
-    );
-  },
+const TabElement = ({ href, children }: { href: string; children: ReactNode }) => (
+  <a className="my-2 block font-medium" href={href}>
+    {children}
+  </a>
 );
 
 /**
@@ -20,9 +17,6 @@ const TabElement = memo(
  */
 // eslint-disable-next-line react/display-name
 export const Header = memo(() => {
-  const [openNav, setOpenNav] = useState(false);
-  const { theme, setTheme } = useTheme();
-
   return (
     <header className="border-b border-border py-4 text-subtext">
       <div className="mx-auto flex max-w-6xl justify-between px-4">
@@ -39,49 +33,10 @@ export const Header = memo(() => {
                 <TabElement href="/profile">Profile</TabElement>
                 <TabElement href="/blogs">Blogs</TabElement>
               </div>
-              <button
-                onClick={() => setOpenNav(prev => !prev)}
-                type="button"
-                className="inline-block size-8 rounded-lg border border-border shadow-sm sm:hidden"
-              >
-                {openNav ? (
-                  <span className="i-material-symbols-close"></span>
-                ) : (
-                  <span className="i-material-symbols-dehaze-rounded"></span>
-                )}
-              </button>
-              {openNav && (
-                <div className="absolute right-24 z-10 mt-2 w-32 origin-top-right rounded-lg border border-border bg-card py-2 pl-4 shadow-lg sm:hidden">
-                  <TabElement isMobile href="/">
-                    Top
-                  </TabElement>
-                  <TabElement isMobile href="/profile">
-                    Profile
-                  </TabElement>
-                  <TabElement isMobile href="/blogs">
-                    Blogs
-                  </TabElement>
-                </div>
-              )}
+              <MobileHeader />
             </div>
             <div className="ml-6 border-l border-border pl-6">
-              {theme === 'light' ? (
-                <button
-                  onClick={() => setTheme('dark')}
-                  type="button"
-                  className="inline-block size-8 rounded-lg border border-border shadow-sm"
-                >
-                  <span className="i-material-symbols-dark-mode-rounded"></span>
-                </button>
-              ) : (
-                <button
-                  onClick={() => setTheme('light')}
-                  type="button"
-                  className="inline-block size-8 rounded-lg border border-border shadow-sm"
-                >
-                  <span className="i-material-symbols-light-mode-rounded"></span>
-                </button>
-              )}
+              <ThemeIcon />
             </div>
           </div>
         </nav>
