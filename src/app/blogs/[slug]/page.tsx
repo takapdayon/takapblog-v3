@@ -20,6 +20,7 @@ import RemarkGithubAlerts from 'remark-alerts';
 import remarkBreaks from 'remark-breaks';
 
 const ShareButtons = dynamic(() => import('./components/ShareButton'), { ssr: false });
+const Mermaid = dynamic(() => import('./components/Mermaid'), { ssr: false });
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
   const { isEnabled: isDraftModeEnabled } = draftMode();
@@ -62,6 +63,9 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
         code(props) {
           // eslint-disable-next-line
           const { children, className, node, ref, ...rest } = props;
+          if (className === 'language-mermaid') {
+            return <Mermaid>{children}</Mermaid>;
+          }
           const match = /language-(\w+)/.exec(className || '');
           return match ? (
             <SyntaxHighlighter {...rest} PreTag="div" language={match[1]} style={coldarkDark}>
