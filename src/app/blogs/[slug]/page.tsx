@@ -60,21 +60,39 @@ const Content = ({ post }: { post: Entry<TypeBlogSkeleton, undefined, string> | 
         h4: props => {
           return <h4 id={props.children?.toString()}>{props.children}</h4>;
         },
+        pre: props => {
+          return <pre className="not-prose">{props.children}</pre>;
+        },
         code(props) {
           // eslint-disable-next-line
           const { children, className, node, ref, ...rest } = props;
           if (className === 'language-mermaid') {
             return <Mermaid>{children}</Mermaid>;
           }
-          const match = /language-(\w+)/.exec(className || '');
-          return match ? (
-            <SyntaxHighlighter {...rest} PreTag="div" language={match[1]} style={coldarkDark}>
+          const child = node?.children[0];
+          if (child?.position !== undefined) {
+            return (
+              <code {...rest} className="break-words rounded bg-inline-back p-0.5 px-1.5 font-normal text-inline-text">
+                {children}
+              </code>
+            );
+          }
+          const match = /language-(\w+)/.exec(className || 'language-plaintext');
+          return (
+            <SyntaxHighlighter
+              customStyle={{
+                padding: '16px',
+                borderRadius: '8px',
+                fontSize: '0.8rem',
+                marginTop: '1.6em',
+                marginBottom: '1.6em',
+              }}
+              {...rest}
+              language={match?.[1]}
+              style={coldarkDark}
+            >
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
-          ) : (
-            <code {...rest} className={className}>
-              {children}
-            </code>
           );
         },
         p: ({ node, ...props }) => {
