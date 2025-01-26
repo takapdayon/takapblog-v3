@@ -1,16 +1,20 @@
 'use client';
 
 import mermaid from 'mermaid';
-import { memo, useEffect, useRef, type ReactNode } from 'react';
-
-mermaid.initialize({
-  startOnLoad: false,
-  theme: 'dark',
-});
+import { useTheme } from 'next-themes';
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 
 // eslint-disable-next-line react/display-name
-const Mermaid = memo(({ children }: { children: ReactNode }) => {
+const Mermaid = ({ children }: { children: ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
+
+  useLayoutEffect(() => {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: theme === 'dark' ? 'dark' : 'default',
+    });
+  });
 
   useEffect(() => {
     if (ref.current) {
@@ -18,11 +22,19 @@ const Mermaid = memo(({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  useEffect(() => {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: theme === 'dark' ? 'dark' : 'default',
+    });
+    mermaid.contentLoaded();
+  }, [theme]);
+
   return (
-    <div className="mermaid" ref={ref}>
+    <div className="mermaid" ref={ref} key={theme}>
       {children}
     </div>
   );
-});
+};
 
 export default Mermaid;
