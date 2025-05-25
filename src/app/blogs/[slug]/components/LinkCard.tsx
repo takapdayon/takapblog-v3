@@ -1,7 +1,17 @@
 import ogs from 'open-graph-scraper';
 
+const fetchOgs = async (url: string) => {
+  try {
+    const { result } = await ogs({ url, timeout: 5000 });
+    return result;
+  } catch (error) {
+    console.error('Error fetching Open Graph data:', error);
+    return {};
+  }
+};
+
 export const LinkCard = async ({ href }: { href: string }) => {
-  const { result } = await ogs({ url: href });
+  const result = await fetchOgs(href);
   const parsedUrl = new URL(href);
   const favicon = `http://www.google.com/s2/favicons?domain=${parsedUrl.hostname}`;
   return (
