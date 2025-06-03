@@ -14,6 +14,7 @@
     --border: 226 232 240; /* slate-200 */
     --inline-text: 225 29 72;
     --inline-back: 241 245 249;
+    --button-hover: 229 231 235; /* bg-gray-200 */
   }
 
   .dark {
@@ -24,6 +25,7 @@
     --border: 51 65 85; /* slate-700 */
     --inline-text: 225 29 72;
     --inline-back: 71 85 105;
+    --button-hover: 71 85 105; /* bg-slate-700 */
   }
 
   body {

@@ -38,6 +38,7 @@ const config: Config = {
         border: 'rgb(var(--border))',
         'inline-text': 'rgb(var(--inline-text))',
         'inline-back': 'rgb(var(--inline-back))',
+        'button-hover': 'rgb(var(--button-hover))',
       },
     },
   },
