@@ -16,8 +16,16 @@ export const getPosts = async (isDraftModeEnabled: boolean = false, page: number
   return posts;
 };
 
+export const getAllPosts = async (isDraftModeEnabled: boolean = false) => {
+  const posts = await createCfClient(isDraftModeEnabled).getEntries<TypeBlogSkeleton>({
+    content_type: CONTENT_TYPE,
+    order: [ORDER_PUBLISHED_DATE],
+  });
+  return posts;
+};
+
 export const getPost = async (slug: string, isDraftModeEnabled: boolean) => {
-  const posts = await getPosts(isDraftModeEnabled);
+  const posts = await getAllPosts(isDraftModeEnabled);
   const post = posts.items.find(item => item.fields.slug === slug);
   return post;
 };
