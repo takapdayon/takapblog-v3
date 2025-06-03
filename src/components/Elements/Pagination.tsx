@@ -1,4 +1,14 @@
 import { type AnchorHTMLAttributes, type ReactNode } from 'react';
+import { tv } from 'tailwind-variants';
+
+const paginationButtonClass = tv({
+  base: 'flex size-10 items-center justify-center rounded-lg p-2 text-sm text-subtext hover:bg-button-hover hover:text-text',
+  variants: {
+    active: {
+      true: 'bg-blue-500 text-white hover:bg-blue-600',
+    },
+  },
+});
 
 const PaginationButton = ({
   active = false,
@@ -6,10 +16,7 @@ const PaginationButton = ({
   ...props
 }: { active?: boolean; children: ReactNode } & AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <a
-      className="focus:outline-hidden flex size-10 items-center justify-center rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
-      {...props}
-    >
+    <a className={paginationButtonClass({ active })} {...props}>
       {children}
     </a>
   );
@@ -34,7 +41,7 @@ export const Pagination = ({
   const nextPage = page + 1;
 
   return (
-    <nav className="flex items-center justify-center gap-x-1" aria-label="Pagination">
+    <nav className="flex items-center justify-center gap-x-2" aria-label="Pagination">
       {canPrevious && (
         <>
           <PaginationButton href={`${href}${prevousPage}`}>
