@@ -3,27 +3,18 @@
 import { useTheme } from 'next-themes';
 
 const ThemeIcon = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+
   return (
-    <>
-      {theme === 'light' ? (
-        <button
-          onClick={() => setTheme('dark')}
-          type="button"
-          className="inline-block size-8 rounded-lg border border-border shadow-sm"
-        >
-          <span className="i-material-symbols-dark-mode-rounded"></span>
-        </button>
-      ) : (
-        <button
-          onClick={() => setTheme('light')}
-          type="button"
-          className="inline-block size-8 rounded-lg border border-border shadow-sm"
-        >
-          <span className="i-material-symbols-light-mode-rounded"></span>
-        </button>
-      )}
-    </>
+    <button
+      aria-label="カラーテーマを切り替える"
+      className="inline-flex size-8 items-center justify-center rounded-lg border border-border shadow-sm"
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      type="button"
+    >
+      <span className="i-material-symbols-dark-mode-rounded dark:hidden" aria-hidden="true" />
+      <span className="i-material-symbols-light-mode-rounded hidden dark:inline" aria-hidden="true" />
+    </button>
   );
 };
 

@@ -1,20 +1,17 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { memo, type ReactNode } from 'react';
-const ThemeIcon = dynamic(() => import('./Elements/ThemeIcon'), { ssr: false });
-const MobileHeader = dynamic(() => import('./Elements/MobileHeader'), { ssr: false });
+
+import MobileHeader from './Elements/MobileHeader';
+import ThemeIcon from './Elements/ThemeIcon';
 
 const TabElement = ({ href, children }: { href: string; children: ReactNode }) => (
-  <a className="my-2 block font-medium" href={href}>
+  <Link className="my-2 block font-medium" href={href}>
     {children}
-  </a>
+  </Link>
 );
 
-/**
- * hydrationエラーが起きる、直すと逐一renderされUI的によくないから許容
- * ref: https://github.com/pacocoursey/next-themes?tab=readme-ov-file#avoid-hydration-mismatch
- */
 // eslint-disable-next-line react/display-name
 export const Header = memo(() => {
   return (
@@ -22,9 +19,9 @@ export const Header = memo(() => {
       <div className="mx-auto flex max-w-6xl justify-between px-4">
         <nav className="mx-auto flex w-full items-center justify-between">
           <div className="flex items-center justify-between">
-            <a className="flex-none text-xl font-semibold" href="/">
+            <Link className="flex-none text-xl font-semibold" href="/">
               taka p*2
-            </a>
+            </Link>
           </div>
           <div className="flex items-center overflow-hidden">
             <div className="h-fit">

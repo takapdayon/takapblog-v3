@@ -1,11 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, type ReactNode } from 'react';
 
-const TabElement = ({ href, children }: { href: string; children: ReactNode }) => (
-  <a className="my-2 block font-medium" href={href}>
+const TabElement = ({ href, children, onClick }: { href: string; children: ReactNode; onClick: () => void }) => (
+  <Link className="my-2 block font-medium" href={href} onClick={onClick}>
     {children}
-  </a>
+  </Link>
 );
 
 const MobileHeader = () => {
@@ -25,9 +26,15 @@ const MobileHeader = () => {
       </button>
       {openNav && (
         <div className="absolute right-24 z-10 mt-2 w-32 origin-top-right rounded-lg border border-border bg-card py-2 pl-4 shadow-lg sm:hidden">
-          <TabElement href="/">Top</TabElement>
-          <TabElement href="/profile">Profile</TabElement>
-          <TabElement href="/blogs">Blogs</TabElement>
+          <TabElement href="/" onClick={() => setOpenNav(false)}>
+            Top
+          </TabElement>
+          <TabElement href="/profile" onClick={() => setOpenNav(false)}>
+            Profile
+          </TabElement>
+          <TabElement href="/blogs" onClick={() => setOpenNav(false)}>
+            Blogs
+          </TabElement>
         </div>
       )}
     </>
